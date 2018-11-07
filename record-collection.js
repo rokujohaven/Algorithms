@@ -1,5 +1,8 @@
 //for description see: 
 //https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/basic-javascript/record-collection
+//Write a function which takes an album's id (like 2548), 
+//a property prop (like "artist" or "tracks"), 
+//and a value (like "Addicted to Love") to modify the data in this collection.
 // Setup
 var collection = {
     "2548": {

@@ -1,3 +1,5 @@
+//for description see: 
+//https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/basic-javascript/record-collection
 // Setup
 var collection = {
     "2548": {

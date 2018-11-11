@@ -30,7 +30,7 @@ var contacts = [
 
 function lookUpProfile(name, prop){
 
-//check if name is an actual contact's firstName and the given prop is a propertyf that contact 
+//check if name is an actual contact's firstName and the given prop is a property of that contact 
 //if both are true, then return 'value' of property. 
  
 for (var i = 0; i < contacts.length; ++i){

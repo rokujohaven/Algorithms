@@ -3,7 +3,8 @@
 
 function sumAll(arr) {
   let sum = 0; 
-  //determining max and min of the input array..
+  //determining max and min of the input array 
+  //which is really a range 
   let min;
   let max;  
   if (arr[0] < arr[1]){
@@ -18,6 +19,8 @@ function sumAll(arr) {
     return arr[0]*2; 
   }
 
+  //after boundaries of range are determined and in the right order,
+  //we find the sum of the range specified in the input array
   for (let i = min; i <= max; ++i){
     sum+=i; 
   }

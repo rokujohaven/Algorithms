@@ -1,4 +1,6 @@
-//https://stackoverflow.com/questions/1044105/how-do-you-get-the-length-of-a-string
+//Return the length of the longest word in the provided sentence.
+//Your response should be a number.
+//Resource used: https://stackoverflow.com/questions/1044105/how-do-you-get-the-length-of-a-string
 
 function findLongestWordLength(str) {
  let words = str.split(" ");

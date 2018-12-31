@@ -1,5 +1,5 @@
 function repeatStringNumTimes(str, num) {
-  // repeat after me
+  //without using repeat()
   let word="";
   if(num < 0){
     return word;
@@ -11,5 +11,4 @@ function repeatStringNumTimes(str, num) {
   return word;
   }
 }
-
 console.log(repeatStringNumTimes("abc", 2));

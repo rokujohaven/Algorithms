@@ -5,7 +5,7 @@
 
 function frankenSplice(arr1, arr2, n) {
   // It's alive. It's alive!
-  let arr=[...arr2]; //to avoid mutating the array
+  let arr=[...arr2]; //to avoid mutating the input arrays
   arr.splice(n,0,arr1);
   return arr;
 }

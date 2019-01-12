@@ -28,3 +28,11 @@ function bouncer(arr) {
 }
 
 console.log(bouncer([1, null, NaN, 2, undefined]));
+
+//Simpler implementation: using .filter()
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  return arr.filter(Boolean);
+}
+
+console.log(bouncer([7, "ate", "", false, 9]));

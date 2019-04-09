@@ -34,3 +34,24 @@ function convertToRoman(num) {
 //convertToRoman(36);
 
 convertToRoman(5789);
+//-------------------------------------------------------
+
+function convertToRoman(num) {
+    let str='';
+    let romanNum = [
+        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'], //ones
+        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C'], //tens
+        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M'] //hundreds
+    ];
+    str = str + 'M'.repeat(num/1000); 
+    console.log(str);
+    num = num % 1000; 
+    console.log(num);
+
+    num.toString(); 
+ return num;
+}
+
+convertToRoman(36);
+convertToRoman(5432); 
+

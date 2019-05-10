@@ -1,10 +1,16 @@
 function telephoneCheck(str) {
   // Good luck!
-  let str1 = str.match(/^1?\s?((\d{3})|(\(\d{3}\)))\s/gm);
-  console.log(str1);
-  return true;
+  if(str.match(/(^\d{10}$)|(^\d{3}\-\d{3}\-\d{4})|(^1\s?\(\d{3}\)\s?\d{3}\-\d{4})|(^1\s\d{3}\-\d{3}\-\d{4})|(^\(\d{3}\)\d{3}\-\d{4})|(^1\s\d{3}\s\d{3}\s\d{4})/gm)==str){
+    return true;
+  } 
+  else{
+    return false;
+  }
 }
 
+console.log(telephoneCheck("555-555-5555"));
+
+//tests below
 telephoneCheck("555-555-5555");
 telephoneCheck("1 555-555-5555"); 
 telephoneCheck("1 (555) 555-5555");
@@ -32,8 +38,6 @@ telephoneCheck("2(757)622-7382");
 telephoneCheck("555)-555-5555");
 telephoneCheck("(555-555-5555");
 telephoneCheck("(555)5(55?)-5555");
-
-//console.log("555-555-5555".match(/\d+/g))
 
 /*
 "555-555-5555"

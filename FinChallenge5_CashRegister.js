@@ -1,14 +1,17 @@
 function checkCashRegister(price, cash, cid) {
 // Here is your change, ma'am.
+console.log("Welcome!");
+  let cid_cp = [...cid]; //in case we cannot return enough change. 
   var change = cash - price;
   let reducer = (accumulator, currentvalue) => accumulator + currentvalue[1]; 
-  let moneyAvail = cid.reduce(reducer,0); 
+  let moneyAvail = cid.reduce(reducer,0);
+  console.log("The cash register has: $" + moneyAvail + " in change.") 
   let unit_Val = {"PENNY":.01, "NICKEL":.05, "DIME":.1, "QUARTER":0.25, "ONE":1, "FIVE":5, "TEN":10, "TWENTY":20, "ONE HUNDRED":100};
 
   if(change < 0){
     return "ERROR: CLIENT DOES NOT HAVE ENOUGH MONEY TO BUY ITEM";
   }
-  else if (change == 0){ //if exact change
+  else if (change == 0 || change == moneyAvail){ //if exact change
     return {status: "CLOSED", change:cid};
   }
   else if(moneyAvail < change){ //if not enough money in drawer
@@ -43,8 +46,10 @@ function checkCashRegister(price, cash, cid) {
               console.log("$" + change + " LEFT"); 
               if(change < 0.01 & change > 0){ //for anything less than a penny just give buyer a penny.
                 cid["PENNY"] = cid["PENNY"] - 0.01;
-                due[due.length - 1][1]+=1; 
+                due[due.length - 1][1]+=.01; 
                 console.log("giving user one extra penny"); 
+                console.log( due[due.length - 1][1]);
+                change = change - change;//make change 0; 
                 done = true;
               }
               else{
@@ -52,10 +57,17 @@ function checkCashRegister(price, cash, cid) {
               }
             }
         }
-        //this part is only reached when no change is left. in this case we stop evaluating any smaller currencies. 
+        //this part is only reached when no change is left or all the currency units have been iterated over. in this case we stop evaluating any smaller currencies. 
         break;
     }
-    return{status: "OPEN", change:due};
+    if (change == 0){
+        return{status: "OPEN", change:due};
+    }
+    else{//cannot return exact change. return all change given so far. transaction fails. 
+      cid = [...cid_cp]
+      console.log("FAILED TRANSACTION. UNABLE TO RETURN EXACT CHANGE.");
+      return{status: "INSUFFICIENT_FUNDS", change: []}
+    }
   }
   
 }
@@ -63,6 +75,10 @@ function checkCashRegister(price, cash, cid) {
 checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
 
 checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
+
+checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
 
 // Example cash-in-drawer array:
 // [["PENNY", 1.01],
